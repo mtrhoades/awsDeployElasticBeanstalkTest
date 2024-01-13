@@ -7,7 +7,7 @@ const app = express();
 
 // root route 
 app.get('/', (req, res) => {
-    res.send("Welcome to the home page duuuuude!");
+    res.send("What is up my duuuuude!");
 });
 
 // server listen
