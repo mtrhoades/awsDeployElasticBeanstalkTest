@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const cors = require('cors');
+const connectDB = require('./models/connect');
 
 // configuration
 require('dotenv').config();
@@ -26,6 +27,14 @@ app.get('/', (req, res) => {
 app.use('/tests', require('./controllers/testController'));
 
 // server listen
-app.listen(PORT, () => {
-    console.log("Yea Dawg we up in here on Port", PORT)
-});        
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI);
+        app.listen(PORT, () => {
+            console.log("Yea Dawg we up in here on Port", PORT)
+        });        
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+start();
